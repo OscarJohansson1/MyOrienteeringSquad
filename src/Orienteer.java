@@ -6,9 +6,11 @@ import Actions.Specialist;
 
 public class Orienteer {
     private final String name;
+    private final Gender gender;
     private int age;
     private int id;
     private static int idCount = 1;
+    private int cost;
     private int score;
     private int speed;
     private int stamina;
@@ -20,9 +22,11 @@ public class Orienteer {
     private int daysSinceLastTraining = 0;
     private boolean retired = false;
 
-    public Orienteer(String name, int age, int speed, int stamina, int strength, int technicalSkills, int routechoiceSkills) {
+    public Orienteer(String name, Gender gender, int age, int cost, int speed, int stamina, int strength, int technicalSkills, int routechoiceSkills) {
         this.name = name;
+        this.gender = gender;
         this.age = age;
+        this.cost = cost;
         this.speed = speed;
         this.stamina = stamina;
         this.strength = strength;
@@ -149,12 +153,20 @@ public class Orienteer {
         return name;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
     public int getAge() {
         return age;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     public int getScore() {
