@@ -1,9 +1,14 @@
-import java.util.Scanner;
+import Actions.Accomplishment;
+import Actions.Compete;
+import Actions.ManageTeam;
+import Actions.Training;
 
+import java.util.Scanner;
 import static java.lang.System.*;
 
 /**
- * The GameMain class is responsible for communication with the command-line.
+ * The GameMain class is responsible for communication with the command-line. Or calls different actions to let them
+ * write directly to the terminal.
  */
 
 public class GameMain {
@@ -14,14 +19,21 @@ public class GameMain {
 
     // Variables that can be used throughout the class
     private final Scanner sc = new Scanner(in);
+
     private String nameManager;
+    private String nameClub;
 
     // Main method communicating with GameLogic
     private void program() {
+        ManageTeam manageTeam = new ManageTeam();
+        Compete competeInRelay = new Compete();
+        Training trainPlayers = new Training();
+        Accomplishment viewAccomplishment = new Accomplishment();
         String action;
 
         welcomeMessage();
-        nameManager = getNameOfManager();
+        nameManager = initializeNameOfManager();
+        nameClub = initializeNameOfClub();
 
         // Infinite loop, or broken when action equals "exit game"
         do {
@@ -29,17 +41,30 @@ public class GameMain {
             action = getActionFromManager();
             switch (action) {
                 case "m":
+                    manageTeam.displayText();
                     break;
                 case "c":
+                    competeInRelay.displayText();
                     break;
                 case "t":
+                    trainPlayers.displayText();
                     break;
                 case "v":
+                    viewAccomplishment.displayText();
                     break;
             }
         } while (!action.equals("e"));
 
         exitMessageAndExit();
+    }
+
+    // Getters
+    public String getManagerName() {
+        return nameManager;
+    }
+
+    public String getClubName() {
+        return nameClub;
     }
 
     // Displays Welcome Message
@@ -50,13 +75,15 @@ public class GameMain {
         out.print("Welcome manager! Please enter your name: ");
     }
 
-    // Get name of Manager
-    private String getNameOfManager() {
+    // Initialize name of Manager
+    private String initializeNameOfManager() {
         return sc.nextLine();
     }
 
-    public String getManagerName() {
-        return nameManager;
+    // Initialize name of Club
+    private String initializeNameOfClub() {
+        out.print("Please enter the name of your club: ");
+        return sc.nextLine();
     }
 
     // Wait until an action is initialized from the manager
@@ -88,7 +115,7 @@ public class GameMain {
     }
 
     // Clears terminal-window
-    private void createSpaceAndLine() {
+    public static void createSpaceAndLine() {
         out.println();
         for (int i = 0 ; i < 120 ; i++) {
             out.print("=");
