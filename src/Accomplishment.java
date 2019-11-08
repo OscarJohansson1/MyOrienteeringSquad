@@ -1,5 +1,3 @@
-package Actions;
-
 /**
  * Communicates with the player while performing the action View Accomplishment.
  */

@@ -1,5 +1,3 @@
-import Actions.Specialist;
-
 /**
  * The Orienteer class describes and performs actions on an orienteer.
  */
@@ -125,11 +123,11 @@ public class Orienteer {
 
     private void updateSpecialist() {
         int sprint = (speed + routechoiceSkills) / 2;
-        int middle = (technicalSkills + speed) / 2;
-        int longdistance = (stamina + strength + routechoiceSkills) / 3;
-        if (sprint >= middle && sprint >= longdistance) {
+        int middle = ((2 * technicalSkills) + speed) / 3;
+        int longdistance = (2 * stamina + strength + routechoiceSkills) / 4;
+        if (sprint > middle && sprint > longdistance) {
             specialist = Specialist.SPRINT;
-        } else if (middle >= longdistance) {
+        } else if (middle > longdistance && middle > sprint) {
             specialist = Specialist.MIDDLE;
         } else {
             specialist = Specialist.LONG;

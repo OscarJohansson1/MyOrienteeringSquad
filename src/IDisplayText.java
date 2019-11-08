@@ -1,5 +1,3 @@
-package Actions;
-
 /**
  * Interface for classes communicating with player (exception: GameMain).
  */
